@@ -1,0 +1,47 @@
+1. Verificar actualizaciones del sistema:
+sudo apt update && sudo apt upgrade -y
+
+2. Instalar dependecias:
+sudo apt install -y ca-certificates curl gnupg lsb-release
+
+3. Crear el directorio de las claves:
+sudo install -m 0755 -d /etc/apt/keyrings
+
+4. Agregar la clave de docker:
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+5. Cambiar los permisos:
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+6. Agregar el repositorio a apt:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/debian
+Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.gpg
+EOF
+
+7. Actualizar la base de datos de repositorios apt:
+sudo apt-get update
+
+8. Instalar la ultima version estable de docker y utilidades:
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+9. Verificar que docker esté corriendo:
+sudo systemctl status docker
+
+10. Si no está corriendo automaticamente:
+sudo systemctl start docker
+
+11. Volver a verificar:
+sudo systemctl status docker
+
+12. Si se desea habilitar docker como servicio:
+sudo systemctl enable --now docker
+
+13. Agregar usuario al grupo docker:
+sudo usermod -aG docker $USER
+
+14. Verificar que todo esté correcto:
+sudo docker run hello-world

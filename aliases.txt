@@ -1,0 +1,28 @@
+# ==================================
+# ALIASES CONFIGURATION FILE
+#===================================
+
+# ==================================
+# To work with docker
+# ==================================
+# Start docker service
+alias dockeron='docker_start'
+# Stop docker service
+alias dockeroff='docker_stop'
+# Show docker service status
+alias dockerst='docker_status'
+
+# ==================================
+# To launch apps
+# ==================================
+# Intellij idea
+alias idea='nohup /usr/local/bin/idea > /dev/null 2>&1 & disown'
+# DataGrip
+alias datagrip='nohup /usr/local/bin/datagrip > /dev/null 2>&1 & disown'
+# Webstorm
+alias webstorm='nohup /usr/local/bin/webstorm > /dev/null 2>&1 & disown'
+# PhpStorm
+alias phpstorm='nohup /usr/local/bin/phpstorm > /dev/null 2>&1 & disown'
+# Postman
+alias postman='nohup /usr/local/bin/postman > /dev/null 2>&1 & disown'
+

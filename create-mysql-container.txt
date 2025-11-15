@@ -1,0 +1,6 @@
+docker run -d \
+  --name mysql_dev \
+  -e MYSQL_ROOT_PASSWORD=devpass \
+  -p 3307:3306 \
+  -v mysql_dev_data:/var/lib/mysql \
+  mysql:latest

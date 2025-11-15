@@ -1,0 +1,39 @@
+# ==============================
+# Docker utilities
+# ==============================
+
+# Message colors
+BLUE="\e[94m"
+GREEN="\e[92m"
+RED="\e[91m"
+YELLOW="\e[93m"
+RESET="\e[0m"
+
+# Start Docker service
+docker_start() {
+	echo -e "${YELLOW}Starting Docker service...${RESET}"
+	if ! sudo systemctl start docker > /dev/null 2>&1; then
+		echo -e "${RED}Failed to start Docker service.${RESET}"
+		return 1
+	fi
+	docker_status
+}
+
+# --- Stop Docker service ---
+docker_stop() {
+	echo -e "${YELLOW}Stopping Docker service...${RESET}"
+		if ! sudo systemctl stop docker > /dev/null 2>&1; then
+		echo -e "${RED}Failed to stop Docker service.${RESET}"
+		return 1
+	fi
+	docker_status
+}
+
+# Is docker active?
+docker_status() {
+	if systemctl is-active --quiet docker; then
+		echo -e "${BLUE}Docker status:${RESET} ${GREEN}is running...${RESET}"
+	else
+		echo -e "${BLUE}Docker status:${RESET} ${RED}is stopped...${RESET}"
+	fi
+}
